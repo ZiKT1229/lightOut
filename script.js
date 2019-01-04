@@ -1,14 +1,5 @@
 const rooms = document.getElementsByClassName("room");
-
-function setGame(seed) {
-  for (let i = 0; i < rooms.length; i++) {
-    if (Math.floor(Math.random() * 100) + 1 <= seed) {
-      rooms[i].classList.add("light-on");
-    } else {
-      rooms[i].classList.add("light-out");
-    }
-  }
-}
+let record = [];
 
 function lightOn(room) {
   room.classList.remove("light-on");
@@ -52,10 +43,19 @@ function around(index) {
   }
 }
 
+function setGame(count) {
+  for (let i = 0; i < count; i++) {
+    let index = Math.floor(Math.random() * 25);
+    record.push(index);
+    switchLight(rooms[index]);
+  }
+}
+
 for (let i = 0; i < rooms.length; i++) {
   rooms[i].addEventListener('click', function() {
     switchLight(rooms[i]);
     around(i);
   });
 }
-setGame(25);
+setGame(10);
+console.log(record);
