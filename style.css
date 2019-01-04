@@ -1,0 +1,40 @@
+body {
+  background: black;
+}
+
+.wrapper {
+  margin: auto;
+  width: 600px;
+  height: 600px;
+  background: chocolate;
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+}
+
+.room {
+  margin: auto;
+  width: 100px;
+  height: 100px;
+  background: gray;
+}
+
+.light-on {
+  background: white;
+}
+
+.light-on:hover {
+  background: url(./images/on.png) white;
+  background-size: 100%;
+  cursor: pointer;
+}
+
+.light-out {
+  background: black;
+}
+
+.light-out:hover {
+  background: url(./images/off.png) black;
+  background-size: 100%;
+  cursor: pointer;
+}
