@@ -48,6 +48,7 @@ function setGame(count) {
     let index = Math.floor(Math.random() * 25);
     record.push(index);
     switchLight(rooms[index]);
+    around(index);
   }
 }
 
@@ -57,5 +58,6 @@ for (let i = 0; i < rooms.length; i++) {
     around(i);
   });
 }
-setGame(10);
+
+setGame(5);
 console.log(record);
