@@ -1,5 +1,7 @@
 const rooms = document.getElementsByClassName("room");
+const input = document.getElementsByTagName("input");
 let record = [];
+let difficlut = 0;
 
 function lightOn(room) {
   room.classList.remove("light-on");
@@ -44,6 +46,12 @@ function around(index) {
 }
 
 function setGame(count) {
+  record = [];
+  for (let i = 0; i < rooms.length; i++) {
+    if (checkLight(rooms[i])) {
+      lightOn(rooms[i]);
+    }
+  }
   for (let i = 0; i < count; i++) {
     let index = Math.floor(Math.random() * 25);
     record.push(index);
@@ -59,5 +67,12 @@ for (let i = 0; i < rooms.length; i++) {
   });
 }
 
-setGame(5);
-console.log(record);
+input[1].addEventListener('click', function() {
+  if (!isNaN(input[0].value)) {
+    difficlut = parseInt(input[0].value);
+    setGame(difficlut);
+  } else {
+    alert('Please input number');
+  }
+  input[0].value = "";
+});
