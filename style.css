@@ -7,6 +7,18 @@ body {
   justify-content: center;
 }
 
+.information {
+  display: flex;
+  justify-content: center;
+}
+
+.information p {
+  margin-left: 20px;
+  margin-right: 20px;
+  font-size: 20px;
+  color: white;
+}
+
 .wrapper {
   margin: auto;
   width: 600px;
