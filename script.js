@@ -2,6 +2,7 @@ const rooms = document.getElementsByClassName("room");
 const input = document.getElementsByTagName("input");
 let record = [];
 let difficlut = 0;
+let N = 5;
 
 function lightOn(room) {
   room.classList.remove("light-on");
@@ -31,17 +32,17 @@ function switchLight(room) {
 }
 
 function around(index) {
-  if (index % 5 !== 0) {
+  if (index % N !== 0) {
     switchLight(rooms[index - 1]);
   }
-  if (index >= 5) {
-    switchLight(rooms[index - 5]);
+  if (index >= N) {
+    switchLight(rooms[index - N]);
   }
-  if (index % 5 !== 4) {
+  if (index % N !== N - 1) {
     switchLight(rooms[index + 1]);
   }
-  if (index < 20) {
-    switchLight(rooms[index + 5]);
+  if (index < N * (N - 1)) {
+    switchLight(rooms[index + N]);
   }
 }
 
@@ -53,7 +54,7 @@ function setGame(count) {
     }
   }
   for (let i = 0; i < count; i++) {
-    let index = Math.floor(Math.random() * 25);
+    let index = Math.floor(Math.random() * (N * N));
     record.push(index);
     switchLight(rooms[index]);
     around(index);
@@ -74,5 +75,4 @@ input[1].addEventListener('click', function() {
   } else {
     alert('Please input number');
   }
-  input[0].value = "";
 });
