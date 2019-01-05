@@ -1,6 +1,6 @@
 const rooms = document.getElementsByClassName("room");
 const input = document.getElementsByTagName("input");
-let record = [];
+let record = new Set();
 let difficlut = 0;
 let N = 5;
 
@@ -15,9 +15,9 @@ function lightOut(room) {
 }
 
 function checkLight(room) {
-  if (room.classList.contains("light-on") === true) {
+  if (room.classList.contains("light-on")) {
     return true;
-  } else if (room.classList.contains("light-out") === true) {
+  } else if (room.classList.contains("light-out")) {
     return false;
   }
   return false;
@@ -47,7 +47,7 @@ function around(index) {
 }
 
 function setGame(count) {
-  record = [];
+  record.clear();
   for (let i = 0; i < rooms.length; i++) {
     if (checkLight(rooms[i])) {
       lightOn(rooms[i]);
@@ -55,7 +55,11 @@ function setGame(count) {
   }
   for (let i = 0; i < count; i++) {
     let index = Math.floor(Math.random() * (N * N));
-    record.push(index);
+    if (record.has(index)) {
+      record.delete(index);
+    } else {
+      record.add(index);
+    }
     switchLight(rooms[index]);
     around(index);
   }
@@ -65,6 +69,11 @@ for (let i = 0; i < rooms.length; i++) {
   rooms[i].addEventListener('click', function() {
     switchLight(rooms[i]);
     around(i);
+    if (record.has(i)) {
+      record.delete(i);
+    } else {
+      record.add(i);
+    }
   });
 }
 
