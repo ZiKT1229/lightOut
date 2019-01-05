@@ -1,8 +1,10 @@
 const rooms = document.getElementsByClassName("room");
 const input = document.getElementsByTagName("input");
+const p = document.getElementsByTagName("p");
 let record = new Set();
 let difficlut = 0;
 let N = 5;
+let setpCount = 0;
 
 function lightOn(room) {
   room.classList.remove("light-on");
@@ -47,6 +49,7 @@ function around(index) {
 }
 
 function setGame(count) {
+  setpCount = 0;
   record.clear();
   for (let i = 0; i < rooms.length; i++) {
     if (checkLight(rooms[i])) {
@@ -63,10 +66,14 @@ function setGame(count) {
     switchLight(rooms[index]);
     around(index);
   }
+  p[0].textContent = `Min step : ${record.size}`;
+  p[1].textContent = `Step count : ${setpCount}`;
 }
 
 for (let i = 0; i < rooms.length; i++) {
   rooms[i].addEventListener('click', function() {
+    setpCount++;
+    p[1].textContent = `Step count : ${setpCount}`;
     switchLight(rooms[i]);
     around(i);
     if (record.has(i)) {
